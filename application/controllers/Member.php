@@ -47,4 +47,46 @@ class Member extends CI_Controller {
             redirect('home');
         }
     }
+
+    public function daftar() {
+        //Form Validation Nama
+        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required', [
+            'required' => 'Nama Belum diisi!'
+        ]);
+
+        //Form Validation Alamat
+        $this->form_validation->set_rules('alamat', 'Alamat Lengkap', 'required', [
+            'required' => 'Alamat Belum diisi!'
+        ]);
+
+        //Form Validation Email
+        $this->form_validation->set_rules('email', 'Alamat Email', 'required|trim|valid_email', [
+            'required' => 'Email Belum diisi!',
+            'valid_email' => 'Email tidak benar!',
+            'is_unique' => 'Email sudah terdaftar'
+        ]);
+
+        //Form Validation Password
+        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
+            'matches' => 'Password tidak sama!',
+            'required' => 'Password harus diisi!!',
+            'min_length' => 'Password terlalu pendek'
+        ]);
+        $this->form_validation->set_rules('password2', 'Repeat Password', 'required|trim|matches[password1]');
+
+        $email = $this->input->post('email', true);
+        $data = [
+            'nama' => htmlspecialchars($this->input->post('nama', true)),
+            'alamat' => $this->input->post('alamat', true),
+            'email' => htmlspecialchars($email),
+            'image' => 'default.jpg',
+            'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+            'role_id' => 2,
+            'is_active' => 1,
+            'tanggal_input' => time()
+        ];
+        $this->ModelUser->simpanData($data);
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Selamat!! akun anggota anda sudah dibuat.</div>');
+        redirect(base_url());
+    }
 }
