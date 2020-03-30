@@ -28,12 +28,12 @@
                     <?php
                     if (!empty($this->session->userdata('email'))) {
                     ?>
-                    <a href="<?= base_url('booking') ?>" class="nav-item nav-link">Booking <b><?= $this->ModelBooking->getDataWhere('temp', ['email_user' => $this->session->userdata('email')])->num_rows(); ?></b> Buku</a>
-                    <a href="<?= base_url('member/myprofil'); ?>" class="nav-item nav-link">Profil Saya</a>
-                    <a href="<?= base_url('member/logout'); ?>" class="nav-item nav-link"><i class="fas fw fa-login"></i> Log out</a>
+                        <a href="<?= base_url('booking') ?>" class="nav-item nav-link">Booking <b><?= $this->ModelBooking->getDataWhere('temp', ['email_user' => $this->session->userdata('email')])->num_rows(); ?></b> Buku</a>
+                        <a href="<?= base_url('member/myprofil'); ?>" class="nav-item nav-link">Profil Saya</a>
+                        <a href="<?= base_url('member/logout'); ?>" class="nav-item nav-link"><i class="fas fw fa-login"></i> Log out</a>
                     <?php } else { ?>
-                    <a href="#" data-toggle="modal" data-target="#daftarModal" class="nav-item nav-link"><i class="fas fw fa-login"></i> Daftar</a>
-                    <a href="#" data-toggle="modal" data-target="#loginModal" class="nav-item nav-link"><i class="fas fw fa-login"></i> Log in</a>
+                        <a href="#" data-toggle="modal" data-target="#daftarModal" class="nav-item nav-link"><i class="fas fw fa-login"></i> Daftar</a>
+                        <a href="#" data-toggle="modal" data-target="#loginModal" class="nav-item nav-link"><i class="fas fw fa-login"></i> Log in</a>
                     <?php } ?>
                     <span class="nav-item nav-link nav-right" style="display: block; margin-left: 20px;">Selamat Datang <b><?= $user ?></b></span>
                 </div>
