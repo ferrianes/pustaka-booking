@@ -89,4 +89,23 @@ class Member extends CI_Controller {
         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Selamat!! akun anggota anda sudah dibuat.</div>');
         redirect(base_url());
     }
+
+    public function myProfil() {
+        $data['judul'] = 'Profil Saya';
+        $user = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
+
+        foreach ($user as $u) {
+            $data = [
+                'image' => $user['image'],
+                'user' => $user['nama'],
+                'email' => $user['email'],
+                'tanggal_input' => $user['tanggal_input']
+            ];
+        }
+
+        $this->load->view('templates/templates-user/header', $data);
+        $this->load->view('member/index', $data);
+        $this->load->view('templates/templates-user/modal');
+        $this->load->view('templates/templates-user/footer', $data);
+    }
 }
