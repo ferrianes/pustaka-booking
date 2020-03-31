@@ -28,7 +28,7 @@
                     <?php
                     if (!empty($this->session->userdata('email'))) {
                     ?>
-                        <a href="<?= base_url('booking') ?>" class="nav-item nav-link">Booking <b><?= $this->ModelBooking->getDataWhere('temp', ['email_user' => $this->session->userdata('email')])->num_rows(); ?></b> Buku</a>
+                        <a href="<?= base_url('booking') ?>" class="nav-item nav-link">Booking <b></b> Buku</a>
                         <a href="<?= base_url('member/myprofil'); ?>" class="nav-item nav-link">Profil Saya</a>
                         <a href="<?= base_url('member/logout'); ?>" class="nav-item nav-link"><i class="fas fw fa-login"></i> Log out</a>
                     <?php } else { ?>

@@ -177,6 +177,6 @@ class Member extends CI_Controller {
         $this->session->unset_userdata('role_id');
 
         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Anda Telah logout!!</div>');
-        redirect('home')
+        redirect('home');
     }
 }
