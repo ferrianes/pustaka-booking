@@ -108,4 +108,66 @@ class Member extends CI_Controller {
         $this->load->view('templates/templates-user/modal');
         $this->load->view('templates/templates-user/footer', $data);
     }
+
+    public function ubahProfil() {
+        $data['judul'] = 'Profil Saya';
+        $user = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
+
+        foreach ($user as $u) {
+            $data = [
+                'image' => $user['image'],
+                'user' => $user['nama'],
+                'email' => $user['email'],
+                'tanggal_input' => $user['tanggal_input']
+            ];
+        }
+
+        // Validasi Nama
+        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim', [
+            'required' => 'Nama tidak boleh kosong'
+        ]);
+
+        //Cek jika validasi gagal dan default
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/templates-user/header', $data);
+            $this->load->view('member/ubah-anggota', $data);
+            $this->load->view('templates/templates-user/modal');
+            $this->load->view('templates/templates-user/footer', $data);
+        } else {
+            $nama = $this->input->post('nama', true);
+            $email = $this->input->post('email', true);
+
+            //jika ada gambar yang akan diupload
+            $upload_image = $_FILES['image']['name'];
+
+            if ($upload_image) {
+                $config['upload_path'] = './assets/img/profile/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = '3000';
+                $config['max_width'] = '1024';
+                $config['max_height'] = '1000';
+                $config['file_name'] = 'pro' . time();
+
+                $this->load->library('upload', $config);
+                
+                if ($this->load->do_upload('image')) {
+                    $gambar_lama = $data['user']['image'];
+                    if ($gambar_lama != 'default.jpg') {
+                        unlink(FCPATH . 'assets/img/profile/' . $gambar_lama);
+                    }
+
+                    $gambar_baru = $this->upload->data('file_name');
+                    $this->db->set('image', $gambar_baru);
+                }
+
+                $this->db->set('nama', $nama);
+                $this->db->where('email', $email);
+                $this->db->update('user');
+
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Profil Berhasil diubah </div>');
+                redirect('member/myprofil');
+
+            }
+        }
+    }
 }
