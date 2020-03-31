@@ -24,6 +24,7 @@ class Member extends CI_Controller {
             //jika user sudah aktif
             if ($user['is_active'] == 1) {
                 //cek password
+                // var_dump($password);die;
                 if (password_verify($password, $user['password'])) {
                     $data = [
                         'email' => $user['email'],
@@ -169,5 +170,13 @@ class Member extends CI_Controller {
 
             }
         }
+    }
+
+    public function logout() {
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('role_id');
+
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Anda Telah logout!!</div>');
+        redirect('home')
     }
 }
