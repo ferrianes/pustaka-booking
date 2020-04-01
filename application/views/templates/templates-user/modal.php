@@ -55,7 +55,7 @@
                         <input type="text" name="email" id="email" placeholder="Alamat Email" class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="password" name="password" id="password" placeholder="Password" class="form-control">
+                        <input type="password" name="password1" id="password1" placeholder="Password" class="form-control">
                     </div>
                     <div class="form-group">
                         <input type="password" name="password2" id="password2" placeholder="Ulangi Password" class="form-control">
