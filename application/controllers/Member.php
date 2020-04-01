@@ -24,7 +24,6 @@ class Member extends CI_Controller {
             //jika user sudah aktif
             if ($user['is_active'] == 1) {
                 //cek password
-                var_dump(password_verify($password, $user['password']));die;
                 if (password_verify($password, $user['password'])) {
                     $data = [
                         'email' => $user['email'],
