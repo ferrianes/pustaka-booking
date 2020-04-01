@@ -33,6 +33,7 @@ class Member extends CI_Controller {
                     ];
 
                     $this->session->set_userdata($data);
+                    $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Selamat Datang '. $user['nama'] .'</div>');
                     redirect('home');
                 } else {
                     $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Password Salah!!!</div>');
