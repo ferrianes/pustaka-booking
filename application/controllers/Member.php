@@ -92,14 +92,14 @@ class Member extends CI_Controller {
     }
 
     public function myProfil() {
-        $data['judul'] = 'Profil Saya';
         $user = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
 
         $data = [
             'image' => $user['image'],
             'user' => $user['nama'],
             'email' => $user['email'],
-            'tanggal_input' => $user['tanggal_input']
+            'tanggal_input' => $user['tanggal_input'],
+            'judul' => 'Profil Saya'
         ];
 
         $this->load->view('templates/templates-user/header', $data);
@@ -109,14 +109,14 @@ class Member extends CI_Controller {
     }
 
     public function ubahProfil() {
-        $data['judul'] = 'Profil Saya';
         $user = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
 
         $data = [
             'image' => $user['image'],
             'user' => $user['nama'],
             'email' => $user['email'],
-            'tanggal_input' => $user['tanggal_input']
+            'tanggal_input' => $user['tanggal_input'],
+            'judul' => 'Profil Saya'
         ];
 
         // Validasi Nama
