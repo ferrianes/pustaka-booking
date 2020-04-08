@@ -1,4 +1,6 @@
 <?php
+defined('BASEPATH') or exit('No Direct script access allowed');
+
 class Autentifikasi extends CI_Controller {
     public function index() {
         //Jika statusnya sudah login, maka tidak bisa mengakses halaman login alias dikembalikan ke tampilan user
