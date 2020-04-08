@@ -19,7 +19,7 @@ class Booking extends CI_Controller {
         $user = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
 
         foreach ($user as $a) {
-            $data .= [
+            $data = [
                 'image' => $user['image'],
                 'user' => $user['nama'],
                 'email' => $user['email'],
@@ -33,7 +33,7 @@ class Booking extends CI_Controller {
             redirect(base_url());
         } else {
             $data['temp'] = $this->db->query("SELECT image, judul_buku, penulis, penerbit, tahun_terbit, id_buku
-            FROM mp
+            FROM temp
             WHERE id_user = '$id_user'")->result_array();
         }
         $data['judul'] = "Data Booking";

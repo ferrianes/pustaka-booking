@@ -20,7 +20,7 @@
         public function joinOrder($where) {
             $this->db->select('*');
             $this->db->from('booking bo');
-            $this->db->join('booking_detail d', 'd.idbooking = bo.id_booking');
+            $this->db->join('booking_detail d', 'd.id_booking = bo.id_booking');
             $this->db->join('buku bu', 'bu.id = d.id_buku');
             $this->db->where($where);
 

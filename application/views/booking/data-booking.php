@@ -19,13 +19,13 @@
                                     <tr>
                                         <td><?= $no; ?></td>
                                         <td>
-                                            <img src="<?= base_url('assets/img/upload/' . $t['image']); ?>" class="rounded" alt="No Picture" width="100%">
+                                            <img src="<?= base_url('assets/img/upload/' . $t['image']); ?>" class="rounded" alt="No Picture" width="10%">
                                         </td>
                                         <td nowrap><?= $t['penulis']; ?></td>
                                         <td nowrap><?= $t['penerbit']; ?></td>
                                         <td nowrap><?= substr($t['tahun_terbit'], 0, 4); ?></td>
                                         <td nowrap>
-                                            <a href="<?= base_url('booking/hapusbooking/' . $t['id_buku']); ?>" onclick="return_konfirm('Yakin tidak jadi Booking ' . $t['judul_buku'])"><i class="btn btn-sm btn-outline-danger fas fw fa-trash"></i></a>
+                                            <a href="<?= base_url('booking/hapusbooking/' . $t['id_buku']); ?>" onclick="return_konfirm('Yakin tidak jadi Booking ' . $t['judul_buku'])" class="btn btn-sm btn-outline-danger"><i class="fas fw fa-trash"></i></a>
                                         </td>
                                     </tr>
                             <?php
@@ -43,7 +43,7 @@
             </tr>
             <tr>
                 <td colspan="3">
-                    <a href="<?= base_url(); ?>" class="btn-btn-sm btn-outline-primary"><span class="fas fw fa-play"></span>Selesaikan Booking</a>
+                    <a href="<?= base_url(); ?>" class="btn btn-sm btn-outline-primary"><i class="fas fw fa-play"></i> Selesaikan Booking</a>
                 </td>
             </tr>
         </table>
