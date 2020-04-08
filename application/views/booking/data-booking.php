@@ -43,7 +43,8 @@
             </tr>
             <tr>
                 <td colspan="3">
-                    <a href="<?= base_url(); ?>" class="btn btn-sm btn-outline-primary"><i class="fas fw fa-play"></i> Selesaikan Booking</a>
+                    <a href="<?= base_url(); ?>" class="btn btn-sm btn-outline-primary"><span class="fas fw fa-play"></span> Lanjutkan Booking Buku</a>
+                    <a href="<?= base_url() . 'booking/bookingSelesai/' . $this->session->userdata('id_user'); ?>" class="btn btn-sm btn-outline-success"><span class="fas fw fa-stop"></span> Selesaikan Booking</a>
                 </td>
             </tr>
         </table>
