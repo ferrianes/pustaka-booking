@@ -25,7 +25,7 @@
                                         <td nowrap><?= $t['penerbit']; ?></td>
                                         <td nowrap><?= substr($t['tahun_terbit'], 0, 4); ?></td>
                                         <td nowrap>
-                                            <a href="<?= base_url('booking/hapusbooking/' . $t['id_buku']); ?>" onclick="return_konfirm('Yakin tidak jadi Booking ' . $t['judul_buku'])" class="btn btn-sm btn-outline-danger"><i class="fas fw fa-trash"></i></a>
+                                            <a href="<?= base_url('booking/hapusbooking/' . $t['id_buku']); ?>" onclick="return confirm('Yakin tidak jadi Booking <?= $t['judul_buku']; ?>')" class="btn btn-sm btn-outline-danger"><i class="fas fw fa-trash"></i></a>
                                         </td>
                                     </tr>
                             <?php
