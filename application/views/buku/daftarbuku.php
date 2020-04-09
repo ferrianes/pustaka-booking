@@ -1,4 +1,9 @@
 <?= $this->session->flashdata('pesan'); ?>
+<?php if(validation_errors()) : ?>
+    <div class="alert alert-danger alert-message" role="alert">
+        <?= validation_errors(); ?>
+    </div>
+<?php endif; ?>
 
 <div style="padding: 25px;">
     <div class="x_panel">
