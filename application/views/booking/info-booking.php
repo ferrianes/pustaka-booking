@@ -15,12 +15,12 @@
                 <td>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped table-hover" id="table-datatable">
-                            <tr>
-                                <tr>No.</tr>
-                                <tr>Buku</tr>
-                                <tr>Penulis</tr>
-                                <tr>Penerbit</tr>
-                                <tr>Tahun</tr>
+                            <t>
+                                <td>No.</td>
+                                <td>Buku</td>
+                                <td>Penulis</td>
+                                <td>Penerbit</td>
+                                <td>Tahun</td>
                             </tr>
                             <?php
                             $no = 1;
