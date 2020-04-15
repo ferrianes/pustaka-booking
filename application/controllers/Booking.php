@@ -153,9 +153,10 @@ class Booking extends CI_Controller {
         $data['user'] = $this->session->userdata('nama');
         $data['judul'] = 'Selesai Booking';
         $data['useraktif'] = $this->ModelUser->cekData(['id' => $this->session->userdata('id_user')])->result();
-        $data['items'] = $this->db->query("SELECT * FROM booking bo, booking_detail d, buku bu
-                                            WHERE d.id_booking = bo.id_booking
-                                                AND bo.id_user = '$where'")->result_array();
+        $data['items'] = $this->db->query("SELECT * FROM booking bo
+                                            JOIN booking_detail d ON d.id_booking = bo.id_booking
+                                            JOIN buku bu ON bu.id = d.id_buku
+                                            WHERE bo.id_user = '$where'")->result_array();
 
         $this->load->view('templates/templates-user/header', $data);
         $this->load->view('booking/info-booking', $data);
@@ -186,8 +187,7 @@ class Booking extends CI_Controller {
         //Convert to PDF
         $this->dompdf->load_html($html);
         $this->dompdf->render();
-        $this->dompdf->stream("bukti-booking-
-        $id_user.pdf", array('Attachment' => 0));
+        $this->dompdf->stream("bukti-booking-$id_user.pdf", array('Attachment' => 0));
         // nama file pdf yang di hasilkan
     }
 }
