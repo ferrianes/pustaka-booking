@@ -49,6 +49,18 @@
             $this->db->delete($table);
         }
 
+        public function find($where)
+        {
+            //Query mencari record berdasarkan ID-nya
+            $this->db->limit(1);
+            return $this->db->get('buku', $where);
+        }
+        
+        public function kosongkanData($table)
+        {
+            return $this->db->truncate($table);
+        }
+
         public function createTemp() {
             $this->db->query('CREATE TABLE IF NOT EXISTS temp(
                 id_booking varchar(12),
