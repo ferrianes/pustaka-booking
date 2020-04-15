@@ -162,4 +162,32 @@ class Booking extends CI_Controller {
         $this->load->view('templates/templates-user/modal');
         $this->load->view('templates/templates-user/footer');
     }
+
+    public function exportToPdf()
+    {
+        $id_user = $this->session->userdata('id_user');
+        $data['user'] = $this->session->userdata('nama');
+        $data['judul'] = "Cetak Bukti Booking";
+        $data['useraktif'] = $this->ModelUser->cekData(['id' => $this->session->userdata('id_user')])->result();
+        $data['items'] = $this->db->query("SELECT * FROM booking bo, booking_detail d, buku bu 
+                                            WHERE d.id_booking = bo.id_booking 
+                                            AND d.id_buku = bu.id 
+                                            AND bo.id_user = '$id_user'")->result_array();
+        
+        $this->load->library('dompdf_gen');
+        
+        $this->load->view('booking/bukti-pdf', $data);
+        
+        $paper_size = 'A4'; // ukuran kertas
+        $orientation = 'landscape'; //tipe format kertas potrait atau landscape
+        $html = $this->output->get_output();
+        
+        $this->dompdf->set_paper($paper_size, $orientation);
+        //Convert to PDF
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("bukti-booking-
+        $id_user.pdf", array('Attachment' => 0));
+        // nama file pdf yang di hasilkan
+    }
 }
