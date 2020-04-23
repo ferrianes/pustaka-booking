@@ -187,6 +187,7 @@ class Booking extends CI_Controller {
         //Convert to PDF
         $this->dompdf->load_html($html);
         $this->dompdf->render();
+        ob_end_clean();
         $this->dompdf->stream("bukti-booking-$id_user.pdf", array('Attachment' => 0));
         // nama file pdf yang di hasilkan
     }
