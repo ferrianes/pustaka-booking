@@ -4,6 +4,12 @@
         <?= validation_errors(); ?>
     </div>
 <?php endif; ?>
+<div class="row">
+    <div class="col">
+        <!--Tampilkan pagination-->
+        <?php echo $pagination; ?>
+    </div>
+</div>
 
 <div style="padding: 25px;">
     <div class="x_panel">
@@ -11,7 +17,7 @@
             <!-- Tampilkan semua produk -->
             <div class="row">
                 <!-- Looping products -->
-                <?php foreach($buku as $b) : ?>
+                <?php foreach($data->result() as $b) : ?>
                     <div class="col-md-2 col-md-3">
                         <div class="thumbnail" style="height: 370px;">
                             <img src="<?= base_url() ?>assets/img/upload/<?= $b->image; ?>" style="max-width: 100%; max-height: 100%; height: 200px; width: 180px;">

@@ -61,5 +61,10 @@
             $this->db->where($where);
             return $this->db->get();
         }
+        
+        public function getBukuList($limit, $start){
+            $query = $this->db->get('buku', $limit, $start);
+            return $query;
+        }
     }
 ?>
