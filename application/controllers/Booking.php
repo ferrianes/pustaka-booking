@@ -125,7 +125,6 @@ class Booking extends CI_Controller {
     public function bookingSelesai($where)
     {
         //mengupdate stok dan dibooking di tabel buku saat proses booking diselesaikan
-
         $this->db->query("UPDATE buku, temp
                             SET buku.dibooking = buku.dibooking+1,
                                 buku.stok = buku.stok-1
