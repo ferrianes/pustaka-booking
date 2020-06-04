@@ -24,4 +24,32 @@ class Laporan extends CI_Controller {
 
         $this->load->view('buku/laporan_print_buku', $data);
     }
+
+    public function laporan_buku_pdf()
+    {
+        $this->load->library('dompdf_gen');
+
+        $data['buku'] = $this->ModelBuku->getBuku()->result_array();
+
+        $this->load->view('buku/laporan_pdf_buku', $data);
+
+        $paper_size = 'A4'; // ukuran kertas
+        $orientation = 'landscape'; //orientasi
+        $html = $this->output->get_output();
+
+        $this->load->library('pdf');
+        $this->pdf->setPaper($paper_size, $orientation);
+        //Convert to PDF
+        $this->pdf->load_html($html);
+        $this->pdf->render();
+        $this->pdf->stream("laporan_data_buku.pdf", ['Attachment' => 0]);
+        // nama file pdf yang dihasilkan
+    }
+
+    public function export_excel()
+    {
+        $data = ['title' => 'Laporan Buku',
+                'buku' => $this->ModelBuku->getBuku()->result_array()];
+        $this->load->view('buku/export_excel_buku', $data);
+    }
 }
